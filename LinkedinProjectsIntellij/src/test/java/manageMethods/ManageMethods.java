@@ -53,6 +53,8 @@ public class ManageMethods {
 
         // Browserın minimize yani küçültülmesi taskbar'a inmesi.
         cdriver.manage().window().minimize();
+        System.out.println("Minimize Window Size : "+cdriver.manage().window().getSize());
+        System.out.println("Minimize Position : "+cdriver.manage().window().getPosition());
         Thread.sleep(2000);
 
         // 15 saniye bekleme için.
