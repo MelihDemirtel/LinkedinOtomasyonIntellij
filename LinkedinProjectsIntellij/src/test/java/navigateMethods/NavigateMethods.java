@@ -1,28 +1,39 @@
 package navigateMethods;
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class NavigateMethods {
     public static void main(String[] args) throws InterruptedException {
-        WebDriver cdriver = new ChromeDriver();//Chrome driver çalıştırmak için
-        int milis = 2000;//2 saniye bekleme süresi
+        int milis = 2000;
+        WebDriver cdriver = new ChromeDriver();
 
         cdriver.get("https://demoqa.com");
-        Thread.sleep(milis);//Bekleme adımı için gerekli. İşlemleri gözlemleyebilmek için.
-
-        cdriver.navigate().to("https://www.google.com");//driver.get metotundan farkı bu şekilde verirseniz sayfada ileri geri yapabilirsiniz.
+        System.out.println("Anasayfa açıldı");
         Thread.sleep(milis);
 
-        cdriver.navigate().back();//Bir önceki sayfaya döner
+        cdriver.navigate().to("https://demoqa.com/elements");
+        System.out.println("Elements sayfasına gidildi");
         Thread.sleep(milis);
 
-        cdriver.navigate().forward();//Bir sonraki sayfaya gider
+        cdriver.navigate().back();
+        System.out.println("sayfada geri gelindi");
         Thread.sleep(milis);
 
-        cdriver.navigate().refresh();//Sayfayı yeniler
+        cdriver.navigate().refresh();
+        System.out.println("sayfa yenilendi");
         Thread.sleep(milis);
 
-        cdriver.close();//driver.quit farkı quit tüm pencereleri kapatır close açık olan sekmeyi kapatır
+        cdriver.navigate().forward();
+        System.out.println("sayfada ileri gidildi");
+        Thread.sleep(milis);
+
+        System.out.println("sayfa kapatılıyor");
+        cdriver.close();
+        cdriver.quit();
+
     }
+
+
 }
