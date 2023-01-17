@@ -1,5 +1,6 @@
 package elementsExamples;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,11 +12,11 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class CheckBox {
-    static String  expectedHomeResult = "home";
     static String actualFirstIndexHome;
+    static String expextedHomeResult = "home";
     public static void main(String[] args) throws InterruptedException {
         WebDriver cdriver = new ChromeDriver();
-        int milis = 1000;
+        int milis = 2000;
         JavascriptExecutor jsx = (JavascriptExecutor) cdriver;
 
         cdriver.manage().window().maximize();
@@ -34,9 +35,10 @@ public class CheckBox {
         WebElement checkBoxHome = cdriver.findElement(By.className("rct-title"));
 
         boolean isSelectedHome = checkBoxHome.isSelected();
+
         if(isSelectedHome){
             System.out.println("CheckBox is already selected");
-        }else {
+        }else{
             checkBoxHome.click();
             System.out.println("CheckBox is selected now");
         }
@@ -44,11 +46,11 @@ public class CheckBox {
 
         List<WebElement> resultHome = cdriver.findElements(By.className("text-success"));
 
-        for (WebElement result : resultHome){
+        for(WebElement result : resultHome){
             System.out.println(result.getText());
         }
         actualFirstIndexHome = resultHome.get(0).getText();
-        Assert.assertEquals(actualFirstIndexHome, expectedHomeResult);
+        Assert.assertEquals(actualFirstIndexHome, expextedHomeResult);
 
         WebElement toggleButton1 = cdriver.findElement(By.xpath("//button[@title='Toggle']"));
 
@@ -56,7 +58,7 @@ public class CheckBox {
         Thread.sleep(milis);
 
         WebElement checkBoxDesktop = cdriver.findElement(By.xpath("//span[contains(text(),'Desktop')]"));
-        WebElement checkBoxDocuments= cdriver.findElement(By.xpath("//span[contains(text(),'Documents')]"));
+        WebElement checkBoxDocuments = cdriver.findElement(By.xpath("//span[contains(text(),'Documents')]"));
         WebElement checkBoxDownloads = cdriver.findElement(By.xpath("//span[contains(text(),'Downloads')]"));
 
         Assert.assertTrue(checkBoxDesktop.isDisplayed());

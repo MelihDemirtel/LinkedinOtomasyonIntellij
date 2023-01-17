@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Locators {
     public static void main(String[] args) throws InterruptedException {
 
-         /*
+        /*
     KODU ÇALIŞTIRIRSANIZ HATA İLE KARŞILAŞABİLİRSİNİZ.
     AŞAĞIDAKİLER ÖRNEK AMAÇLI YAPILMIŞTIR.
      */
@@ -55,5 +55,51 @@ public class Locators {
         cdriver.findElement(By.xpath("//h5[text()='Login in Book Store']"));//XPATH ile locator tanımlama ->  //tagName[text()='any text']"));
         cdriver.findElement(By.xpath("//h5[contains(text(),'Book Store')]"));//XPATH ile locator tanımlama ->  //tagName[contains(text(),'any text part')]"));
 
+
+        //VİDEO da ANLATILAN KISIM
+
+        /*
+         ID
+         CLASS NAME
+         NAME
+         TAG NAME
+         CSS SELECTOR
+         LINK TEXT
+         PARTIAL LINK TEXT
+         XPATH
+         */
+
+        cdriver.get("https://demoqa.com/text-box");
+
+        cdriver.findElement(By.id("userName"));
+
+        cdriver.findElement(By.name("color-scheme"));
+
+        cdriver.findElement(By.className("form-label"));
+
+        cdriver.findElement(By.tagName("label"));
+
+        cdriver.findElement(By.linkText("https://www.katalon.com/free-automation-tools/?utm_source=demoqa&utm_medium=homepage_banner&utm_campaign=katalon_community"));
+
+        cdriver.findElement(By.partialLinkText("katalon"));
+
+        cdriver.findElement(By.cssSelector("label"));
+        cdriver.findElement(By.cssSelector("#userEmail-label"));
+        cdriver.findElement(By.cssSelector(".form-label"));
+        cdriver.findElement(By.cssSelector("[type='text']"));
+        cdriver.findElement(By.cssSelector("div input"));
+        cdriver.findElement(By.cssSelector("input#userEmail"));
+        cdriver.findElement(By.cssSelector("label.form-label"));
+
+        cdriver.findElement(By.xpath("//label"));
+        cdriver.findElement(By.xpath("//input[@type='text']"));
+        cdriver.findElement(By.xpath("//input[contains(@type,'text')]"));
+        cdriver.findElement(By.xpath("//label[contains(text(),'Full')]"));
+        cdriver.findElement(By.xpath("(//div[@class='element-group'])[5]"));
+        cdriver.findElement(By.xpath("//input[@placeholder='Full Name' and @type='text']"));
+
+
     }
+
+
 }
