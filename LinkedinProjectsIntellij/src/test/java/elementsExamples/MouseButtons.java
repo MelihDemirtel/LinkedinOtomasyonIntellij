@@ -1,4 +1,7 @@
 package elementsExamples;
 
-public class MouseButtons {
+
+
+public class MouseButtons{
+   
 }
