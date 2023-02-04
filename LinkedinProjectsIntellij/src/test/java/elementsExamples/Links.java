@@ -19,17 +19,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+
 public class Links {
     static WebDriver cdriver;
+
+    //HTTP
     static HttpURLConnection connection;
     static int responseCode;
 
     //Elements
     static WebElement elementsButton;
-    static WebElement linksButtons;
+    static WebElement linksButton;
     static WebElement homeLink;
-    static ExpectedCondition elementsButtonIsDisplayed;
     static WebElement elementsButtonWait;
+    static ExpectedCondition elementsButtonIsDisplayed;
 
     //Windows
     static Set<String> windows;
@@ -44,15 +47,14 @@ public class Links {
 
     @BeforeClass
     public static void setUp(){
-        cdriver = new ChromeDriver();
-        cdriver.manage().window().maximize();
-        cdriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    cdriver = new ChromeDriver();
+    cdriver.manage().window().maximize();
+    cdriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        cdriver.get("https://demoqa.com");
+    cdriver.get("https://demoqa.com");
     }
     @AfterClass
-    public static void tearDown(){
-        cdriver.quit();
+    public static void tearDown(){ cdriver.quit();
     }
 
     @Test
@@ -62,8 +64,8 @@ public class Links {
     }
     @Test
     public void test02(){
-        linksButtons = cdriver.findElement(By.xpath("//span[text()='Links']"));
-        linksButtons.click();
+        linksButton = cdriver.findElement(By.xpath("//span[text()='Links']"));
+        linksButton.click();
     }
     @Test
     public void test03(){
@@ -85,20 +87,19 @@ public class Links {
     @Test
     public void test05(){
         links = cdriver.findElements(By.tagName("a"));
-        for (int i=4; i<links.size(); i++) {
+        for (int i = 4; i<links.size(); i++){
             url = links.get(i).getAttribute("href");
             urlText = links.get(i).getText();
-            try {
+            try{
                 connection = (HttpURLConnection) new URL(url).openConnection();
                 connection.setRequestMethod("HEAD");
                 connection.connect();
 
                 responseCode = connection.getResponseCode();
 
-                System.out.println("URL: " + url + " | " + " Returned Response Code: " + responseCode + " | " + " URL Text: " + urlText);
-
-            } catch (IOException e) {
-                System.out.println("Error checking response code for URL: " + url + " | " + " URL Text: " + urlText);
+                System.out.println("URL: " + url + " | " + "Returned Response Code: " + responseCode + " | " + "URL Text: " + urlText);
+            }catch (IOException e){
+                System.out.println("Error Checking Response Code For URL: " + url + " | " + "URL Text: " + urlText);
             }
         }
     }
