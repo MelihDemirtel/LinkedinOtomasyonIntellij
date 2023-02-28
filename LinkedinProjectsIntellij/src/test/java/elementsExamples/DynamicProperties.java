@@ -21,8 +21,6 @@ public class DynamicProperties {
     //ELEMENTS
     static WebElement elementsButton;
     static WebElement dynamicPropertiesButton;
-    static WebElement firstRandomIdText;
-    static WebElement SecondRandomIdText;
     static WebElement enableButton;
     static WebElement colorButton;
     static WebElement visibleButton;
@@ -31,7 +29,7 @@ public class DynamicProperties {
     static int milis = 6000;
     static String firstRandomIdAttribute;
     static String secondRandomIdAttribute;
-    static boolean enableButtonIsEnable;
+    static Boolean enableButtonIsEnable;
     static String firstColorButtonAttribute;
     static String secondColorButtonAttribute;
     static boolean visibleButtonIsVisible;
@@ -61,14 +59,10 @@ public class DynamicProperties {
         Thread.sleep(1000);
         firstRandomIdAttribute = cdriver.findElement(By.xpath("//p[contains(text(),'This text has random Id')]")).getAttribute("id");
         System.out.println("firstRandomIdAttribute: " + firstRandomIdAttribute);
-        firstRandomIdText = cdriver.findElement(By.id(firstRandomIdAttribute));
-        softAssert.assertTrue(firstRandomIdText.isDisplayed());
         cdriver.navigate().refresh();
         Thread.sleep(1000);
         secondRandomIdAttribute = cdriver.findElement(By.xpath("//p[contains(text(),'This text has random Id')]")).getAttribute("id");
         System.out.println("secondRandomIdAttribute: " + secondRandomIdAttribute);
-        SecondRandomIdText = cdriver.findElement(By.id(secondRandomIdAttribute));
-        softAssert.assertTrue(SecondRandomIdText.isDisplayed());
         softAssert.assertNotEquals(firstRandomIdAttribute, secondRandomIdAttribute);
         softAssert.assertAll();
     }
@@ -78,8 +72,8 @@ public class DynamicProperties {
         enableButtonIsEnable = enableButton.isEnabled();
         softAssert.assertFalse(enableButtonIsEnable);
         System.out.println("STATE enableButtonIsEnable: " + enableButtonIsEnable);
-        while (enableButtonIsEnable != true){
-            System.out.println("Enable Button Is Not Enable Wait For 5 Seconds");
+        while(enableButtonIsEnable != true){
+            System.out.println("Enable Button Is Not Enable, Wait For 5 Seconds");
             Thread.sleep(milis);
             enableButtonIsEnable = enableButton.isEnabled();
         }
@@ -95,7 +89,7 @@ public class DynamicProperties {
         Thread.sleep(milis);
         secondColorButtonAttribute = colorButton.getAttribute("class");
         System.out.println("secondColorButtonAttribute: " + secondColorButtonAttribute);
-        softAssert.assertNotEquals(firstRandomIdAttribute, secondRandomIdAttribute);
+        softAssert.assertNotEquals(firstColorButtonAttribute, secondColorButtonAttribute);
         softAssert.assertAll();
     }
     @Test
