@@ -15,8 +15,8 @@ import java.time.Duration;
 
 public class DynamicProperties {
     static WebDriver cdriver;
-    static SoftAssert softAssert;
     static JavascriptExecutor jsx;
+    static SoftAssert softAssert;
 
     //ELEMENTS
     static WebElement elementsButton;
@@ -30,9 +30,10 @@ public class DynamicProperties {
     static String firstRandomIdAttribute;
     static String secondRandomIdAttribute;
     static Boolean enableButtonIsEnable;
-    static String firstColorButtonAttribute;
-    static String secondColorButtonAttribute;
-    static boolean visibleButtonIsVisible;
+    static String firstColorButtonClassAttribute;
+    static String secondColorButtonClassAttribute;
+    static Boolean visibleButtonIsVisible;
+
 
     @BeforeClass
     public static void setUp(){
@@ -55,15 +56,14 @@ public class DynamicProperties {
     public static void tearDown(){ cdriver.quit();
     }
     @Test
-    public void test01() throws InterruptedException {
-        Thread.sleep(1000);
+    public void test01() {
         firstRandomIdAttribute = cdriver.findElement(By.xpath("//p[contains(text(),'This text has random Id')]")).getAttribute("id");
         System.out.println("firstRandomIdAttribute: " + firstRandomIdAttribute);
         cdriver.navigate().refresh();
-        Thread.sleep(1000);
         secondRandomIdAttribute = cdriver.findElement(By.xpath("//p[contains(text(),'This text has random Id')]")).getAttribute("id");
         System.out.println("secondRandomIdAttribute: " + secondRandomIdAttribute);
         softAssert.assertNotEquals(firstRandomIdAttribute, secondRandomIdAttribute);
+        System.out.println("IDs are dynamic");
         softAssert.assertAll();
     }
     @Test
@@ -72,7 +72,7 @@ public class DynamicProperties {
         enableButtonIsEnable = enableButton.isEnabled();
         softAssert.assertFalse(enableButtonIsEnable);
         System.out.println("STATE enableButtonIsEnable: " + enableButtonIsEnable);
-        while(enableButtonIsEnable != true){
+        while (enableButtonIsEnable != true){
             System.out.println("Enable Button Is Not Enable, Wait For 5 Seconds");
             Thread.sleep(milis);
             enableButtonIsEnable = enableButton.isEnabled();
@@ -84,17 +84,17 @@ public class DynamicProperties {
     @Test
     public void test03() throws InterruptedException {
         colorButton = cdriver.findElement(By.id("colorChange"));
-        firstColorButtonAttribute = colorButton.getAttribute("class");
-        System.out.println("firstColorButtonAttribute: " + firstColorButtonAttribute);
+        firstColorButtonClassAttribute = colorButton.getAttribute("class");
+        System.out.println("firstColorButtonClassAttribute: " + firstColorButtonClassAttribute);
         Thread.sleep(milis);
-        secondColorButtonAttribute = colorButton.getAttribute("class");
-        System.out.println("secondColorButtonAttribute: " + secondColorButtonAttribute);
-        softAssert.assertNotEquals(firstColorButtonAttribute, secondColorButtonAttribute);
+        secondColorButtonClassAttribute = colorButton.getAttribute("class");
+        System.out.println("secondColorButtonClassAttribute: " + secondColorButtonClassAttribute);
+        softAssert.assertNotEquals(firstColorButtonClassAttribute, secondColorButtonClassAttribute);
+        System.out.println("Button Color Changed");
         softAssert.assertAll();
     }
     @Test
-    public void test04() throws InterruptedException {
-        Thread.sleep(milis);
+    public void test04() {
         visibleButton = cdriver.findElement(By.id("visibleAfter"));
         visibleButtonIsVisible = visibleButton.isDisplayed();
         softAssert.assertTrue(visibleButtonIsVisible);
