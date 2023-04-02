@@ -30,7 +30,6 @@ public class Droppable {
     static String actualMessage;
     static String expectedMessage = "Dropped!";
 
-
     @BeforeClass
     public static void setUp(){
         cdriver = new ChromeDriver();
@@ -54,6 +53,7 @@ public class Droppable {
     }
     @Test
     public void test01() throws InterruptedException {
+        Thread.sleep(1000);
         draggable = cdriver.findElement(By.id("draggable"));
         droppable = cdriver.findElement(By.id("droppable"));
         actions.moveToElement(draggable).clickAndHold().moveToElement(droppable).release().build().perform();
@@ -61,21 +61,5 @@ public class Droppable {
         actualMessage = droppable.getText();
         softAssert.assertEquals(actualMessage, expectedMessage);
         softAssert.assertAll();
-
-        /*
-        actions nesnesi, bir dizi farklı kullanıcı etkileşimi eylemi gerçekleştirmek için kullanılan bir Sürükle ve Bırak işlemi için bir yardımcıdır.
-
-        moveToElement(draggable) yöntemi, sürükleme işleminin başlangıç noktasını belirlemek için "draggable" adlı öğeyi tıklar ve tutar.
-
-        clickAndHold() yöntemi, "draggable" öğesini tıklayarak onu tutar.
-
-        moveToElement(droppable) yöntemi, bırakma işleminin hedef noktasını belirlemek için "droppable" adlı öğeye taşır.
-
-        release() yöntemi, "draggable" öğesini "droppable" öğesinin üzerine bırakarak sürükleme işlemini tamamlar.
-
-        build() yöntemi, önceki adımları bir araya getirerek bir işlem zinciri oluşturur.
-
-        perform() yöntemi, işlem zincirini gerçekleştirir ve sürükleme işlemini tamamlar.
-         */
     }
 }
