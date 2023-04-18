@@ -22,6 +22,7 @@ https://github.com/MelihDemirtel/LinkedinOtomasyonIntellij.git
 
 ## Senaryolar
 Bu projede [Demoqa](https://demoqa.com) web sayfasında yer alan senaryolar yer almaktadır:
+
 ### Elements Sayfası:
 1. Text Box
 2. Chechk Box
@@ -32,9 +33,11 @@ Bu projede [Demoqa](https://demoqa.com) web sayfasında yer alan senaryolar yer 
 7. Broken Links - Images
 8. Upload and Download
 9. Dynamic Properties
+
 ### Alerts, Frame & Windows Sayfası:
 1. Alerts
 2. Frames
+
 ### Interactions Sayfası:
 1. Droppable
 
